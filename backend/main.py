@@ -9,28 +9,52 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 
-from backend.analytics import (
-    load_data,
-    get_available_dates,
-    build_forecast_vs_actual,
-    compute_monthly_metrics,
-    compute_horizon_error,
-    get_uncertainty_band,
-    compute_overall_metrics,
-)
-from backend.models import (
-    HealthResponse,
-    ForecastResponse,
-    ForecastPoint,
-    DayKPI,
-    MetricsResponse,
-    MetricDetail,
-    HourMetric,
-    WindLevelMetric,
-    HorizonResponse,
-    HorizonBucket,
-    DatesResponse,
-)
+try:
+    from backend.analytics import (
+        load_data,
+        get_available_dates,
+        build_forecast_vs_actual,
+        compute_monthly_metrics,
+        compute_horizon_error,
+        get_uncertainty_band,
+        compute_overall_metrics,
+    )
+    from backend.models import (
+        HealthResponse,
+        ForecastResponse,
+        ForecastPoint,
+        DayKPI,
+        MetricsResponse,
+        MetricDetail,
+        HourMetric,
+        WindLevelMetric,
+        HorizonResponse,
+        HorizonBucket,
+        DatesResponse,
+    )
+except ModuleNotFoundError:
+    from analytics import (
+        load_data,
+        get_available_dates,
+        build_forecast_vs_actual,
+        compute_monthly_metrics,
+        compute_horizon_error,
+        get_uncertainty_band,
+        compute_overall_metrics,
+    )
+    from models import (
+        HealthResponse,
+        ForecastResponse,
+        ForecastPoint,
+        DayKPI,
+        MetricsResponse,
+        MetricDetail,
+        HourMetric,
+        WindLevelMetric,
+        HorizonResponse,
+        HorizonBucket,
+        DatesResponse,
+    )
 
 # ---------------------------------------------------------------------------
 # App setup
