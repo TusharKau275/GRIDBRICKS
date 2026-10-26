@@ -2,7 +2,7 @@
 
 A full-stack web application for monitoring UK national wind generation forecasts and quantifying their accuracy, designed for energy traders making day-ahead market decisions.
 
-> **Live app:** _[link placeholder — deploy and replace]_
+> **Live app:** [https://frontend-nine-psi-28.vercel.app/](https://frontend-nine-psi-28.vercel.app/)
 
 ---
 
@@ -110,6 +110,7 @@ docker compose up --build
 ## Deployment
 
 ### Frontend → Vercel
+- **Live URL:** [https://frontend-nine-psi-28.vercel.app/](https://frontend-nine-psi-28.vercel.app/)
 1. Connect the `frontend/` directory to Vercel.
 2. Set env var `VITE_API_URL` to your backend URL.
 3. `vercel.json` handles SPA routing.
@@ -135,12 +136,35 @@ docker compose up --build
 
 ---
 
-## AI Assistance
+## Use of AI Tools
 
-This project was developed with the assistance of **Antigravity** (Google DeepMind AI coding assistant). AI tools were used for code generation, architecture design, and documentation.
+This project was developed with the assistance of modern AI developer tooling, combining automated generation with human technical oversight, domain-specific validation, and code review.
+
+### Tools Utilized
+- **Google Antigravity / Gemini**: Primary agentic coding assistant for full-stack scaffolding, architectural design, Pandas vectorization, API schema definition, and interactive UI component development.
+- **LLM-Assisted Code Generation & Refactoring**: Used to generate unit test suites (`pytest`), Docker containerization configurations, and vanilla CSS design system tokens.
+
+### How AI Was Applied
+1. **Architecture & API Design**:
+   - Drafting clean RESTful contracts between the FastAPI backend and React frontend.
+   - Structuring Pydantic V2 response models with float sanitization (`NaN`/`Inf` handling for JSON compliance).
+2. **Domain Logic & Data Analytics (`analytics.py`)**:
+   - Vectorized Pandas operations for zero-lookahead forecast selection (`publishTime <= cutoff_utc` grouped by target settlement period).
+   - Empirical statistical calculations: MAE, RMSE, systematic bias, and historical P90 absolute error bands.
+   - Timezone reconciliation between UTC timestamps and UK local time (`Europe/London`).
+3. **Frontend & Visualizations**:
+   - Building Recharts components including the day-ahead `ComposedChart` with shaded uncertainty intervals.
+   - Crafting custom dark-mode CSS tokens, glassmorphic card layouts, and responsive metric grids.
+4. **Testing & QA**:
+   - Generating edge-case unit tests in `backend/test_analytics.py` to prevent data leakage and ensure mathematical accuracy.
+5. **DevOps & Documentation**:
+   - Authoring `docker-compose.yml`, multi-stage Dockerfiles, deployment configurations (`Procfile`, `vercel.json`), and comprehensive technical documentation.
+
+### Human Verification & Quality Control
+- **Market Rules & Anti-Lookahead Logic**: Rigorously verified that forecast filtering strictly excludes any publications after the D-1 09:00 cutoff.
+- **Mathematical Accuracy**: Cross-checked formulas for MAE, RMSE, bias, and percentile calculation against manual numpy calculations.
+- **Bug Fixes & Refactoring**: Resolved package import paths across monorepo and container environments, and tuned React `useMemo` hooks for smooth cutoff slider interaction.
+- **Security & Best Practices**: Audited CORS settings, environment variable bindings, and removed all secrets and hardcoded credentials.
 
 ---
 
-## License
-
-MIT
