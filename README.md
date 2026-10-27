@@ -16,8 +16,8 @@ UK energy utilities buy electricity on the **day-ahead market**. Decisions for d
 ## Screenshots
 
 | Forecast Page | Accuracy Page |
-|---|---|
-| Interactive chart of forecast vs actual with P90 uncertainty band | KPI cards, error by hour, by wind level, and by forecast horizon |
+| :---: | :---: |
+| [![Forecast Page](screenshots/forecast_page.png)](screenshots/forecast_page.png)<br><sub>**Interactive chart of forecast vs actual with P90 uncertainty band**</sub> | [![Accuracy Page](screenshots/accuracy_page.png)](screenshots/accuracy_page.png)<br><sub>**KPI cards, error by hour, by wind level, and by forecast horizon**</sub> |
 
 ---
 
@@ -50,6 +50,9 @@ GRIDWORKS/
 ├── data/                     # CSV data files
 │   ├── wind_actuals.csv      # Half-hourly actual generation
 │   └── wind_forecasts.csv    # Multiple forecasts per slot
+├── screenshots/              # Application UI screenshots
+│   ├── forecast_page.png
+│   └── accuracy_page.png
 ├── docker-compose.yml
 ├── Procfile                  # Heroku/Render deployment
 ├── .gitignore
